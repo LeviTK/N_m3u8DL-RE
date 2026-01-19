@@ -22,6 +22,41 @@ yay -Syu n-m3u8dl-re-bin
 yay -Syu n-m3u8dl-re-git
 ```
 
+macOS (Homebrew):
+
+```bash
+brew tap LeviTK/tap
+brew install --HEAD n-m3u8dl-re
+```
+
+注：当前为 head-only 公式，会从源码构建，依赖 dotnet 和 ffmpeg。
+
+### macOS Apple Silicon (M1/M2/M3) 说明
+
+程序完全支持 macOS arm64，但需注意外部工具配置：
+
+**必需依赖：**
+- .NET 10 SDK/Runtime（`brew install dotnet`）
+- ffmpeg（`brew install ffmpeg`，已原生支持 arm64）
+
+**可选依赖（按需安装）：**
+- **mkvmerge**：仅在使用 `-M muxer=mkvmerge` 时需要
+  ```bash
+  brew install mkvtoolnix
+  ```
+- **mp4decrypt**：DRM 解密引擎之一（默认）
+  ```bash
+  brew install bento4
+  ```
+- **shaka-packager**：DRM 解密引擎之一
+  - 官方未提供 arm64 版本，需下载 x64 版本通过 Rosetta 运行，或自行编译
+  - 程序仅搜索 `shaka-packager`、`packager-osx-x64` 等名称
+  - 若使用其他文件名，需通过 `--decryption-binary-path` 指定路径
+
+**注意事项：**
+- AOT 发布到 `osx-arm64` 需要 Xcode Command Line Tools
+- 若遇到权限问题，使用 `xattr -cr /path/to/N_m3u8DL-RE` 清除隔离属性
+
 ---
 
 ## 命令行参数
