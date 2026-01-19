@@ -20,6 +20,15 @@ yay -Syu n-m3u8dl-re-bin
 yay -Syu n-m3u8dl-re-git
 ```
 
+macOS (Homebrew):
+
+```bash
+brew tap LeviTK/tap
+brew install --HEAD n-m3u8dl-re
+```
+
+Note: this is a head-only formula. It builds from source and depends on dotnet and ffmpeg.
+
 ---
 
 ## Command line parameters
